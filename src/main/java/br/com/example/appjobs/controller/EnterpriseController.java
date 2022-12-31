@@ -4,10 +4,7 @@ import br.com.example.appjobs.domain.EnterpriseDomain;
 import br.com.example.appjobs.service.EnterpriseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -22,9 +19,15 @@ public class EnterpriseController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<EnterpriseDomain>> getAllEnterprise(){
         return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+    }
+
+
+    @PostMapping
+    public ResponseEntity<EnterpriseDomain> save(@RequestBody EnterpriseDomain a){
+        return ResponseEntity.status(HttpStatus.OK).body(service.save(a));
     }
 
 
