@@ -1,5 +1,6 @@
 package br.com.example.appjobs.dto;
 
+import br.com.example.appjobs.domain.EnterpriseDomain;
 import jakarta.validation.constraints.NotBlank;
 
 public class EnterpriseDTO {
@@ -34,4 +35,5 @@ public class EnterpriseDTO {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 }

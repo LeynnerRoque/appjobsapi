@@ -1,6 +1,8 @@
 package br.com.example.appjobs.controller;
 
 import br.com.example.appjobs.domain.EnterpriseDomain;
+import br.com.example.appjobs.dto.EnterpriseDTO;
+import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.service.EnterpriseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,19 +17,24 @@ import java.util.Objects;
 public class EnterpriseController {
     final EnterpriseService service;
 
-    public EnterpriseController(EnterpriseService service) {
+    final EnterpriseMapper mapper;
+
+    public EnterpriseController(EnterpriseService service, EnterpriseMapper mapper) {
         this.service = service;
+        this.mapper = mapper;
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<EnterpriseDomain>> getAllEnterprise(){
-        return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+    public ResponseEntity<List<EnterpriseDTO>> getAllEnterprise(){
+        var dtos = mapper.toListDTO(service.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
 
     @PostMapping
-    public ResponseEntity<EnterpriseDomain> save(@RequestBody EnterpriseDomain a){
-        return ResponseEntity.status(HttpStatus.OK).body(service.save(a));
+    public ResponseEntity<Object> save(@RequestBody EnterpriseDTO a){
+        EnterpriseDomain domain = mapper.fromEntity(a);
+        return ResponseEntity.status(HttpStatus.OK).body(service.save(domain));
     }
 
 

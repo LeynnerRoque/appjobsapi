@@ -20,7 +20,6 @@ public class EnterpriseService {
 
     @Transactional
     public EnterpriseDomain save(EnterpriseDomain dto){
-        double d = Math.random();
         long id = Double.doubleToLongBits(Math.random());
         dto.setId(id);
         return repository.save(dto);
