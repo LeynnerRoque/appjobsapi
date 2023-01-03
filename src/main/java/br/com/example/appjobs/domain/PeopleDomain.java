@@ -24,6 +24,17 @@ public class PeopleDomain implements Serializable {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String phone;
+
+    @OneToOne
+    @JoinColumn
+    private JobDomain jobId;
+
+    @OneToOne
+    @JoinColumn
+    private LocationDomain locationId;
+
     public Long getId() {
         return id;
     }
@@ -96,15 +107,5 @@ public class PeopleDomain implements Serializable {
         this.locationId = locationId;
     }
 
-    @Column(nullable = false)
-    private String phone;
-
-    @OneToOne
-    @JoinColumn
-    private JobDomain jobId;
-
-    @OneToOne
-    @JoinColumn
-    private LocationDomain locationId;
 
 }
