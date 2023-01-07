@@ -1,9 +1,7 @@
 package br.com.example.appjobs.service;
 
 import br.com.example.appjobs.domain.EnterpriseDomain;
-import br.com.example.appjobs.dto.EnterpriseDTO;
 import br.com.example.appjobs.repository.EnterpriseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,4 +26,6 @@ public class EnterpriseService {
     public List<EnterpriseDomain> findAll(){
         return repository.findAll();
     }
+
+
 }

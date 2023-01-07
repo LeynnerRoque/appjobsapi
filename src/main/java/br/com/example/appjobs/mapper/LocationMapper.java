@@ -4,11 +4,13 @@ import br.com.example.appjobs.domain.LocationDomain;
 import br.com.example.appjobs.dto.EnterpriseDTO;
 import br.com.example.appjobs.dto.LocationDTO;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service
 public class LocationMapper {
 
     public LocationDomain fromEntity(LocationDTO dto){

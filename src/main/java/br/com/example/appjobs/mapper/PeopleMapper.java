@@ -3,11 +3,13 @@ package br.com.example.appjobs.mapper;
 import br.com.example.appjobs.domain.PeopleDomain;
 import br.com.example.appjobs.dto.PeopleDTO;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service
 public class PeopleMapper {
 
     public PeopleDomain fromEntity(PeopleDTO dto){
