@@ -19,8 +19,8 @@ public class JobMapper {
     }
 
     public JobDTO toDTO(JobDomain model){
-        var dto = new JobDTO();
-        BeanUtils.copyProperties(model, dto);
+        var dto = new JobDTO(model);
+        //BeanUtils.copyProperties(model, dto);
         return dto;
     }
 

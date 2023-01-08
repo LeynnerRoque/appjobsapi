@@ -18,8 +18,8 @@ public class PeopleMapper {
         return model;
     }
     public PeopleDTO toDTO(PeopleDomain model){
-        var dto = new PeopleDTO();
-        BeanUtils.copyProperties(model, dto);
+        var dto = new PeopleDTO(model);
+        //BeanUtils.copyProperties(model, dto);
         return dto;
     }
 

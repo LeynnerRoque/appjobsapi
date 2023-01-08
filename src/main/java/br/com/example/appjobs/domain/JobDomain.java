@@ -19,9 +19,8 @@ public class JobDomain implements Serializable {
     @Column(nullable = false)
      private Double salary;
 
-    @OneToOne
-    @JoinColumn
-    private EnterpriseDomain enterpriseId;
+    @Column(nullable = false)
+    private Long enterpriseId;
 
 
     public Long getId() {
@@ -56,11 +55,11 @@ public class JobDomain implements Serializable {
         this.salary = salary;
     }
 
-    public EnterpriseDomain getEnterpriseId() {
+    public Long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(EnterpriseDomain enterpriseId) {
+    public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 }

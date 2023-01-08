@@ -22,6 +22,8 @@ public class LocationService {
 
     @Transactional
     public LocationDomain save(LocationDTO dto){
+        long id = Double.doubleToLongBits(Math.random());
+        dto.setId(id);
         var object = mapper.fromEntity(dto);
         return repository.save(object);
     }

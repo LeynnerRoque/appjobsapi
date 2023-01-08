@@ -27,13 +27,11 @@ public class PeopleDomain implements Serializable {
     @Column(nullable = false)
     private String phone;
 
-    @OneToOne
-    @JoinColumn
-    private JobDomain jobId;
+    @Column(nullable = false)
+    private Long jobId;
 
-    @OneToOne
-    @JoinColumn
-    private LocationDomain locationId;
+    @Column(nullable = false)
+    private Long locationId;
 
     public Long getId() {
         return id;
@@ -91,19 +89,19 @@ public class PeopleDomain implements Serializable {
         this.phone = phone;
     }
 
-    public JobDomain getJobId() {
+    public Long getJobId() {
         return jobId;
     }
 
-    public void setJobId(JobDomain jobId) {
+    public void setJobId(Long jobId) {
         this.jobId = jobId;
     }
 
-    public LocationDomain getLocationId() {
+    public Long getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(LocationDomain locationId) {
+    public void setLocationId(Long locationId) {
         this.locationId = locationId;
     }
 

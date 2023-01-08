@@ -24,7 +24,8 @@ public class PeopleService {
         return repository.save(object);
     }
 
-    public List<PeopleDomain> listAll() {
-        return repository.findAll();
+    public List<PeopleDTO> listAll() {
+        var lista = mapper.toListDTO(repository.findAll());
+        return lista;
     }
 }

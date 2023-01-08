@@ -1,6 +1,24 @@
 package br.com.example.appjobs.dto;
 
+import br.com.example.appjobs.domain.PeopleDomain;
+
 public class PeopleDTO {
+
+    public PeopleDTO(){}
+
+    public PeopleDTO(PeopleDomain model){
+        this.id = model.getId();
+        this.name = model.getName();
+        this.email = model.getEmail();
+        this.gender = model.getGender();
+        this.age = model.getAge();
+        this.phone = model.getPhone();
+        this.regionName = model.getRegionName();
+        this.location = model.getLocationId();
+        this.job = model.getJobId();
+    }
+
+    private Long id;
     private String name;
     private String gender;
     private Integer age;
@@ -9,9 +27,18 @@ public class PeopleDTO {
 
     private String phone;
 
-    private JobDTO jobDTO;
+    private Long job;
 
-    private LocationDTO locationDTO;
+    private Long location;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -61,19 +88,19 @@ public class PeopleDTO {
         this.phone = phone;
     }
 
-    public JobDTO getJobDTO() {
-        return jobDTO;
+    public Long getJob() {
+        return job;
     }
 
-    public void setJobDTO(JobDTO jobDTO) {
-        this.jobDTO = jobDTO;
+    public void setJob(Long job) {
+        this.job = job;
     }
 
-    public LocationDTO getLocationDTO() {
-        return locationDTO;
+    public Long getLocation() {
+        return location;
     }
 
-    public void setLocationDTO(LocationDTO locationDTO) {
-        this.locationDTO = locationDTO;
+    public void setLocation(Long location) {
+        this.location = location;
     }
 }

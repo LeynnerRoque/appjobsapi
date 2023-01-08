@@ -24,14 +24,14 @@ public class EnterpriseController {
         this.mapper = mapper;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/api/all")
     public ResponseEntity<List<EnterpriseDTO>> getAllEnterprise(){
         var dtos = mapper.toListDTO(service.findAll());
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
 
-    @PostMapping
+    @PostMapping("/api/add")
     public ResponseEntity<Object> save(@RequestBody EnterpriseDTO a){
         EnterpriseDomain domain = mapper.fromEntity(a);
         return ResponseEntity.status(HttpStatus.OK).body(service.save(domain));

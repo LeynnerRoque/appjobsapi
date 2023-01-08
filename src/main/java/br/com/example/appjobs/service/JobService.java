@@ -1,8 +1,11 @@
 package br.com.example.appjobs.service;
 
+import br.com.example.appjobs.domain.EnterpriseDomain;
 import br.com.example.appjobs.domain.JobDomain;
 import br.com.example.appjobs.dto.JobDTO;
+import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.mapper.JobMapper;
+import br.com.example.appjobs.repository.EnterpriseRepository;
 import br.com.example.appjobs.repository.JobRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +18,30 @@ public class JobService {
     final JobRepository repository;
     final JobMapper mapper;
 
-    public JobService(JobRepository repository, JobMapper mapper){
+    final EnterpriseRepository enterpriseRepository;
+    final EnterpriseMapper enterpriseMapper;
 
+    public JobService(JobRepository repository,
+                      JobMapper mapper,
+                      EnterpriseRepository enterpriseRepository,
+                      EnterpriseMapper enterpriseMapper){
         this.repository = repository;
         this.mapper = mapper;
+        this.enterpriseRepository = enterpriseRepository;
+        this.enterpriseMapper = enterpriseMapper;
     }
 
     public JobDomain save(JobDTO dto){
+        long id = Double.doubleToLongBits(Math.random());
+        dto.setId(id);
+        //var enterprise = enterpriseRepository.findById(id);
+      //  dto.setEnterpriseDTO(enterpriseMapper.toDTO(enterprise.get()));
         var object = mapper.fromEntity(dto);
         return repository.save(object);
     }
 
-    public List<JobDomain> listAll(){
-        return repository.findAll();
+    public List<JobDTO> listAll(){
+        var lista = mapper.toListDTO(repository.findAll());
+        return lista;
     }
 }
