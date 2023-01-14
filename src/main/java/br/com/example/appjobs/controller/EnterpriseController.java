@@ -1,6 +1,6 @@
 package br.com.example.appjobs.controller;
 
-import br.com.example.appjobs.domain.EnterpriseDomain;
+import br.com.example.appjobs.domain.EnterpriseEntity;
 import br.com.example.appjobs.dto.EnterpriseDTO;
 import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.service.EnterpriseService;
@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -32,9 +31,8 @@ public class EnterpriseController {
 
 
     @PostMapping("/api/add")
-    public ResponseEntity<Object> save(@RequestBody EnterpriseDTO a){
-        EnterpriseDomain domain = mapper.fromEntity(a);
-        return ResponseEntity.status(HttpStatus.OK).body(service.save(domain));
+    public ResponseEntity<EnterpriseEntity> save(@RequestBody EnterpriseDTO a){
+        return ResponseEntity.status(HttpStatus.OK).body(service.save(a));
     }
 
 

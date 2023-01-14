@@ -2,13 +2,11 @@ package br.com.example.appjobs.controller;
 
 import br.com.example.appjobs.domain.JobDomain;
 import br.com.example.appjobs.dto.JobDTO;
+import br.com.example.appjobs.mapper.JobMapper;
 import br.com.example.appjobs.service.JobService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,9 +15,11 @@ import java.util.List;
 @RequestMapping("/job")
 public class JobController {
     final JobService service;
+    final JobMapper mapper;
 
-    public JobController(JobService service){
+    public JobController(JobService service, JobMapper mapper){
         this.service = service;
+        this.mapper = mapper;
     }
 
     @GetMapping("/api/all")
@@ -27,4 +27,13 @@ public class JobController {
         return ResponseEntity.status(HttpStatus.OK).body(service.listAll());
     }
 
+    @PostMapping("/api/add")
+    public ResponseEntity<JobDTO> save(JobDTO dto){
+        var a = service.save(dto);
+         if(a == null){
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST) .body(null);
+            }else{
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.toDTO(a));
+        }
+    }
 }

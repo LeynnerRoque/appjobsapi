@@ -1,7 +1,6 @@
 package br.com.example.appjobs.service;
 
-import br.com.example.appjobs.domain.EnterpriseDomain;
-import br.com.example.appjobs.domain.JobDomain;
+import br.com.example.appjobs.domain.JobEntity;
 import br.com.example.appjobs.dto.JobDTO;
 import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.mapper.JobMapper;
@@ -31,11 +30,9 @@ public class JobService {
         this.enterpriseMapper = enterpriseMapper;
     }
 
-    public JobDomain save(JobDTO dto){
-        long id = Double.doubleToLongBits(Math.random());
+    public JobEntity save(JobDTO dto){
+        int id = (int) Math.random();
         dto.setId(id);
-        //var enterprise = enterpriseRepository.findById(id);
-      //  dto.setEnterpriseDTO(enterpriseMapper.toDTO(enterprise.get()));
         var object = mapper.fromEntity(dto);
         return repository.save(object);
     }

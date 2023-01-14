@@ -1,6 +1,8 @@
 package br.com.example.appjobs.service;
 
-import br.com.example.appjobs.domain.EnterpriseDomain;
+import br.com.example.appjobs.domain.EnterpriseEntity;
+import br.com.example.appjobs.dto.EnterpriseDTO;
+import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.repository.EnterpriseRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,19 +13,23 @@ import java.util.List;
 public class EnterpriseService {
 
     final EnterpriseRepository repository;
+    final EnterpriseMapper mapper;
 
-    public EnterpriseService(EnterpriseRepository repository) {
+    public EnterpriseService(EnterpriseRepository repository, EnterpriseMapper mapper) {
+
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     @Transactional
-    public EnterpriseDomain save(EnterpriseDomain dto){
-        long id = Double.doubleToLongBits(Math.random());
+    public EnterpriseEntity save(EnterpriseDTO dto){
+        int id = (int) Math.random();
         dto.setId(id);
-        return repository.save(dto);
+        var object = mapper.fromEntity(dto);
+        return repository.save(object);
     }
 
-    public List<EnterpriseDomain> findAll(){
+    public List<EnterpriseEntity> findAll(){
         return repository.findAll();
     }
 

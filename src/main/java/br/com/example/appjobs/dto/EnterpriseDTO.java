@@ -4,6 +4,8 @@ import br.com.example.appjobs.domain.EnterpriseDomain;
 import jakarta.validation.constraints.NotBlank;
 
 public class EnterpriseDTO {
+
+    private int id;
     @NotBlank
     private String foundationName;
     @NotBlank
@@ -11,6 +13,14 @@ public class EnterpriseDTO {
     @NotBlank
     private String phoneNumber;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFoundationName() {
         return foundationName;
