@@ -1,11 +1,8 @@
 package br.com.example.appjobs.controller;
 
-import br.com.example.appjobs.domain.EnterpriseDomain;
-import br.com.example.appjobs.domain.LocationDomain;
+import br.com.example.appjobs.domain.LocationModel;
 import br.com.example.appjobs.dto.LocationDTO;
-import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.mapper.LocationMapper;
-import br.com.example.appjobs.service.EnterpriseService;
 import br.com.example.appjobs.service.LocationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +29,14 @@ public class LocationController {
     }
 
     @PostMapping("/api/add")
-    public ResponseEntity<LocationDomain> save(@RequestBody LocationDTO dto){
-        return ResponseEntity.status(HttpStatus.OK).body(service.save(dto));
+    public ResponseEntity<LocationModel> save(@RequestBody LocationDTO dto){
+        var saveObject = service.save(dto);
+        if(saveObject != null){
+            return ResponseEntity.status(HttpStatus.OK).body(saveObject);
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        //return ResponseEntity.status(HttpStatus.OK).body(service.save(dto));
     }
 
 }

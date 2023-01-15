@@ -1,6 +1,6 @@
 package br.com.example.appjobs.service;
 
-import br.com.example.appjobs.domain.LocationDomain;
+import br.com.example.appjobs.domain.LocationModel;
 import br.com.example.appjobs.dto.LocationDTO;
 import br.com.example.appjobs.mapper.LocationMapper;
 import br.com.example.appjobs.repository.LocationRepository;
@@ -21,8 +21,8 @@ public class LocationService {
     }
 
     @Transactional
-    public LocationDomain save(LocationDTO dto){
-        long id = Double.doubleToLongBits(Math.random());
+    public LocationModel save(LocationDTO dto){
+        int id =  (int) Math.random();
         dto.setId(id);
         var object = mapper.fromEntity(dto);
         return repository.save(object);

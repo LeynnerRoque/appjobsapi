@@ -1,19 +1,31 @@
 package br.com.example.appjobs.dto;
 
+import br.com.example.appjobs.domain.LocationModel;
+
 public class LocationDTO {
 
-    private Long id;
+    public LocationDTO(){
+    }
+
+    public LocationDTO(LocationModel model){
+        this.id = model.getId();
+        this.city = model.getCity();
+        this.postalCode = model.getPostalCode();
+        this.stateProvince = model.getStateProvince();
+        this.streetAddress = model.getStreetAddress();
+    }
+
+    private Integer id;
     private String streetAddress;
     private String postalCode;
     private String city;
     private String stateProvince;
 
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

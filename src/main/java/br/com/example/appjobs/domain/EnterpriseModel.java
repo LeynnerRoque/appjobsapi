@@ -2,11 +2,11 @@ package br.com.example.appjobs.domain;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.Collection;
 
 @Entity
 @Table(name = "enterprise", schema = "appjobs", catalog = "")
-public class EnterpriseEntity {
+public class EnterpriseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -20,9 +20,8 @@ public class EnterpriseEntity {
     @Basic
     @Column(name = "phone_number", nullable = true, length = 11)
     private String phoneNumber;
-
     @OneToMany(mappedBy = "enterprise")
-    private Set<JobEntity> jobs;
+    private Collection<JobModel> jobsById;
 
     public int getId() {
         return id;
@@ -61,7 +60,7 @@ public class EnterpriseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EnterpriseEntity that = (EnterpriseEntity) o;
+        EnterpriseModel that = (EnterpriseModel) o;
 
         if (id != that.id) return false;
         if (foundationName != null ? !foundationName.equals(that.foundationName) : that.foundationName != null)
@@ -79,5 +78,13 @@ public class EnterpriseEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         return result;
+    }
+
+    public Collection<JobModel> getJobsById() {
+        return jobsById;
+    }
+
+    public void setJobsById(Collection<JobModel> jobsById) {
+        this.jobsById = jobsById;
     }
 }

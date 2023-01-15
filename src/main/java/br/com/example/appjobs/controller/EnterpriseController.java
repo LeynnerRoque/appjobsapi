@@ -1,9 +1,10 @@
 package br.com.example.appjobs.controller;
 
-import br.com.example.appjobs.domain.EnterpriseEntity;
+import br.com.example.appjobs.domain.EnterpriseModel;
 import br.com.example.appjobs.dto.EnterpriseDTO;
 import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.service.EnterpriseService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +30,14 @@ public class EnterpriseController {
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
+    @GetMapping("/api/one/{id}")
+    public ResponseEntity<EnterpriseDTO> getOneEnterprise(@PathVariable("id") Integer id){
+        var dtos = mapper.toDTO(service.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(dtos);
+    }
 
     @PostMapping("/api/add")
-    public ResponseEntity<EnterpriseEntity> save(@RequestBody EnterpriseDTO a){
+    public ResponseEntity<EnterpriseModel> save(@RequestBody EnterpriseDTO a){
         return ResponseEntity.status(HttpStatus.OK).body(service.save(a));
     }
 

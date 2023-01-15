@@ -1,6 +1,6 @@
 package br.com.example.appjobs.service;
 
-import br.com.example.appjobs.domain.PeopleDomain;
+import br.com.example.appjobs.domain.PeoplesModel;
 import br.com.example.appjobs.dto.PeopleDTO;
 import br.com.example.appjobs.mapper.PeopleMapper;
 import br.com.example.appjobs.repository.PeopleRepository;
@@ -19,7 +19,7 @@ public class PeopleService {
         this.mapper = mapper;
     }
 
-    public PeopleDomain save(PeopleDTO dto) {
+    public PeoplesModel save(PeopleDTO dto) {
         var object = mapper.fromEntity(dto);
         return repository.save(object);
     }

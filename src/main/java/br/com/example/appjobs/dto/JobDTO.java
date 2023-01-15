@@ -1,7 +1,7 @@
 package br.com.example.appjobs.dto;
 
-import br.com.example.appjobs.domain.EnterpriseEntity;
-import br.com.example.appjobs.domain.JobEntity;
+import br.com.example.appjobs.domain.EnterpriseModel;
+import br.com.example.appjobs.domain.JobModel;
 
 public class JobDTO {
 
@@ -9,12 +9,12 @@ public class JobDTO {
     public JobDTO(){
     }
 
-    public JobDTO(JobEntity model){
+    public JobDTO(JobModel model){
         this.id = model.getId();
         this.title = model.getTitle();
         this.description = model.getDescription();
         this.salary = model.getSalary();
-        this.enterprise = model.getEnterpriseId();
+        this.enterprise = new EnterpriseDTO(model.getEnterprise());
     }
 
     private int id;
@@ -22,7 +22,7 @@ public class JobDTO {
     private String description;
     private Double salary;
 
-    private EnterpriseEntity enterprise;
+    private EnterpriseDTO enterprise;
 
     public int getId() {
         return id;
@@ -56,11 +56,11 @@ public class JobDTO {
         this.salary = salary;
     }
 
-    public EnterpriseEntity getEnterprise() {
+    public EnterpriseDTO getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(EnterpriseEntity enterprise) {
+    public void setEnterprise(EnterpriseDTO enterprise) {
         this.enterprise = enterprise;
     }
 }

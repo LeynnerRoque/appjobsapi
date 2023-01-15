@@ -1,6 +1,6 @@
 package br.com.example.appjobs.dto;
 
-import br.com.example.appjobs.domain.EnterpriseDomain;
+import br.com.example.appjobs.domain.EnterpriseModel;
 import jakarta.validation.constraints.NotBlank;
 
 public class EnterpriseDTO {
@@ -13,6 +13,13 @@ public class EnterpriseDTO {
     @NotBlank
     private String phoneNumber;
 
+
+    public EnterpriseDTO(EnterpriseModel model){
+        this.id = model.getId();
+        this.foundationName = model.getFoundationName();
+        this.email = model.getEmail();
+        this.phoneNumber = model.getPhoneNumber();
+    }
 
     public int getId() {
         return id;

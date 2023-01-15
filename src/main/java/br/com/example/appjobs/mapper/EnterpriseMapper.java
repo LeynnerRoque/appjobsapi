@@ -1,6 +1,6 @@
 package br.com.example.appjobs.mapper;
 
-import br.com.example.appjobs.domain.EnterpriseEntity;
+import br.com.example.appjobs.domain.EnterpriseModel;
 import br.com.example.appjobs.dto.EnterpriseDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -12,20 +12,20 @@ import java.util.stream.Collectors;
 @Service
 public class EnterpriseMapper {
 
-    public EnterpriseEntity fromEntity(EnterpriseDTO dto){
-        var model = new EnterpriseEntity();
+    public EnterpriseModel fromEntity(EnterpriseDTO dto){
+        var model = new EnterpriseModel();
         BeanUtils.copyProperties(dto, model);
         return model;
     }
 
 
-    public EnterpriseDTO toDTO(EnterpriseEntity model){
-        var dto = new EnterpriseDTO();
+    public EnterpriseDTO toDTO(EnterpriseModel model){
+        var dto = new EnterpriseDTO(model);
         BeanUtils.copyProperties(model, dto);
         return dto;
     }
 
-    public List<EnterpriseDTO> toListDTO(List<EnterpriseEntity> models){
+    public List<EnterpriseDTO> toListDTO(List<EnterpriseModel> models){
         return models.stream()
                 .filter(Objects::nonNull)
                 .map(this::toDTO)

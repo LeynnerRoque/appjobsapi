@@ -2,9 +2,11 @@ package br.com.example.appjobs.domain;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
 @Table(name = "location", schema = "appjobs", catalog = "")
-public class LocationEntity {
+public class LocationModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -21,6 +23,8 @@ public class LocationEntity {
     @Basic
     @Column(name = "state_province", nullable = true, length = 100)
     private String stateProvince;
+    @OneToMany(mappedBy = "locationByLocationId")
+    private Collection<PeoplesModel> peoplesById;
 
     public int getId() {
         return id;
@@ -67,7 +71,7 @@ public class LocationEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LocationEntity that = (LocationEntity) o;
+        LocationModel that = (LocationModel) o;
 
         if (id != that.id) return false;
         if (streetAddress != null ? !streetAddress.equals(that.streetAddress) : that.streetAddress != null)
@@ -88,5 +92,13 @@ public class LocationEntity {
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (stateProvince != null ? stateProvince.hashCode() : 0);
         return result;
+    }
+
+    public Collection<PeoplesModel> getPeoplesById() {
+        return peoplesById;
+    }
+
+    public void setPeoplesById(Collection<PeoplesModel> peoplesById) {
+        this.peoplesById = peoplesById;
     }
 }

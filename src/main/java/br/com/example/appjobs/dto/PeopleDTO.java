@@ -1,12 +1,14 @@
 package br.com.example.appjobs.dto;
 
-import br.com.example.appjobs.domain.PeopleDomain;
+import br.com.example.appjobs.domain.JobModel;
+import br.com.example.appjobs.domain.LocationModel;
+import br.com.example.appjobs.domain.PeoplesModel;
 
 public class PeopleDTO {
 
     public PeopleDTO(){}
 
-    public PeopleDTO(PeopleDomain model){
+    public PeopleDTO(PeoplesModel model){
         this.id = model.getId();
         this.name = model.getName();
         this.email = model.getEmail();
@@ -14,11 +16,11 @@ public class PeopleDTO {
         this.age = model.getAge();
         this.phone = model.getPhone();
         this.regionName = model.getRegionName();
-        this.location = model.getLocationId();
-        this.job = model.getJobId();
+        this.location = model.getLocationByLocationId();
+        this.job = model.getJobByJobId();
     }
 
-    private Long id;
+    private int id;
     private String name;
     private String gender;
     private Integer age;
@@ -27,16 +29,16 @@ public class PeopleDTO {
 
     private String phone;
 
-    private Long job;
+    private JobModel job;
 
-    private Long location;
+    private LocationModel location;
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -88,19 +90,19 @@ public class PeopleDTO {
         this.phone = phone;
     }
 
-    public Long getJob() {
+    public JobModel getJob() {
         return job;
     }
 
-    public void setJob(Long job) {
+    public void setJob(JobModel job) {
         this.job = job;
     }
 
-    public Long getLocation() {
+    public LocationModel getLocation() {
         return location;
     }
 
-    public void setLocation(Long location) {
+    public void setLocation(LocationModel location) {
         this.location = location;
     }
 }

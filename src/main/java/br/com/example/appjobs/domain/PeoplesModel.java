@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "peoples", schema = "appjobs", catalog = "")
-public class PeoplesEntity {
+public class PeoplesModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -27,12 +27,12 @@ public class PeoplesEntity {
     @Basic
     @Column(name = "phone", nullable = true, length = 11)
     private String phone;
-    @Basic
-    @Column(name = "location_id", nullable = false)
-    private int locationId;
-    @Basic
-    @Column(name = "job_id", nullable = false)
-    private int jobId;
+    @ManyToOne
+    @JoinColumn(name = "location_id", referencedColumnName = "id", nullable = false)
+    private LocationModel locationByLocationId;
+    @ManyToOne
+    @JoinColumn(name = "job_id", referencedColumnName = "id", nullable = false)
+    private JobModel jobByJobId;
 
     public int getId() {
         return id;
@@ -90,32 +90,15 @@ public class PeoplesEntity {
         this.phone = phone;
     }
 
-    public int getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
-    }
-
-    public int getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(int jobId) {
-        this.jobId = jobId;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PeoplesEntity that = (PeoplesEntity) o;
+        PeoplesModel that = (PeoplesModel) o;
 
         if (id != that.id) return false;
-        if (locationId != that.locationId) return false;
-        if (jobId != that.jobId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (gender != null ? !gender.equals(that.gender) : that.gender != null) return false;
         if (age != null ? !age.equals(that.age) : that.age != null) return false;
@@ -135,8 +118,22 @@ public class PeoplesEntity {
         result = 31 * result + (regionName != null ? regionName.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + locationId;
-        result = 31 * result + jobId;
         return result;
+    }
+
+    public LocationModel getLocationByLocationId() {
+        return locationByLocationId;
+    }
+
+    public void setLocationByLocationId(LocationModel locationByLocationId) {
+        this.locationByLocationId = locationByLocationId;
+    }
+
+    public JobModel getJobByJobId() {
+        return jobByJobId;
+    }
+
+    public void setJobByJobId(JobModel jobByJobId) {
+        this.jobByJobId = jobByJobId;
     }
 }
