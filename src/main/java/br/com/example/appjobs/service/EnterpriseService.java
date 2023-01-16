@@ -31,12 +31,12 @@ public class EnterpriseService {
         return repository.save(object);
     }
 
-    public List<EnterpriseModel> findAll(){
-        return repository.findAll();
+    public List<EnterpriseDTO> findAll(){
+        return mapper.toListDTO(repository.findAll());
     }
 
-    public EnterpriseModel findById(Integer id){
-        return repository.findById(id);
+    public EnterpriseDTO findById(Integer id){
+        return mapper.toDTO(repository.findById(id));
     }
 
 

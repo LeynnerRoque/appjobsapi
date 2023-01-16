@@ -7,6 +7,8 @@ import java.util.Collection;
 @Entity
 @Table(name = "location", schema = "appjobs", catalog = "")
 public class LocationModel {
+
+    private static final long serialVersionUID = 1L;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -23,8 +25,8 @@ public class LocationModel {
     @Basic
     @Column(name = "state_province", nullable = true, length = 100)
     private String stateProvince;
-    @OneToMany(mappedBy = "locationByLocationId")
-    private Collection<PeoplesModel> peoplesById;
+    @OneToMany(mappedBy = "locationId")
+    private Collection<PeoplesModel> peoples;
 
     public int getId() {
         return id;
@@ -95,10 +97,10 @@ public class LocationModel {
     }
 
     public Collection<PeoplesModel> getPeoplesById() {
-        return peoplesById;
+        return peoples;
     }
 
     public void setPeoplesById(Collection<PeoplesModel> peoplesById) {
-        this.peoplesById = peoplesById;
+        this.peoples = peoplesById;
     }
 }

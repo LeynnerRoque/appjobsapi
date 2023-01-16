@@ -7,6 +7,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "enterprise", schema = "appjobs", catalog = "")
 public class EnterpriseModel {
+    private static final long serialVersionUID = 1L;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -20,7 +21,7 @@ public class EnterpriseModel {
     @Basic
     @Column(name = "phone_number", nullable = true, length = 11)
     private String phoneNumber;
-    @OneToMany(mappedBy = "enterprise")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enterpriseId")
     private Collection<JobModel> jobsById;
 
     public int getId() {

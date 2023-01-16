@@ -7,6 +7,8 @@ import java.util.Collection;
 @Entity
 @Table(name = "job", schema = "appjobs", catalog = "")
 public class JobModel {
+
+    private static final long serialVersionUID = 1L;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -21,11 +23,11 @@ public class JobModel {
     @Column(name = "salary", nullable = true, precision = 0)
     private Double salary;
 
-    @ManyToOne
-    @JoinColumn(name = "enterprise_id", referencedColumnName = "id", nullable = false)
-    private EnterpriseModel enterprise;
-    @OneToMany(mappedBy = "jobByJobId")
-    private Collection<PeoplesModel> peoplesById;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "enterprise_id", referencedColumnName = "id")
+    private EnterpriseModel enterpriseId;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "jobId")
+    private Collection<PeoplesModel> peoples;
 
     public int getId() {
         return id;
@@ -86,18 +88,18 @@ public class JobModel {
     }
 
     public EnterpriseModel getEnterprise() {
-        return enterprise;
+        return enterpriseId;
     }
 
     public void setEnterprise(EnterpriseModel enterpriseByEnterpriseId) {
-        this.enterprise = enterpriseByEnterpriseId;
+        this.enterpriseId = enterpriseByEnterpriseId;
     }
 
     public Collection<PeoplesModel> getPeoplesById() {
-        return peoplesById;
+        return peoples;
     }
 
     public void setPeoplesById(Collection<PeoplesModel> peoplesById) {
-        this.peoplesById = peoplesById;
+        this.peoples = peoplesById;
     }
 }

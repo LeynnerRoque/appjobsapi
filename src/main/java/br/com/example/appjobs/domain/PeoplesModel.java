@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "peoples", schema = "appjobs", catalog = "")
 public class PeoplesModel {
+
+    private static final long serialVersionUID = 1L;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -28,11 +30,11 @@ public class PeoplesModel {
     @Column(name = "phone", nullable = true, length = 11)
     private String phone;
     @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "id", nullable = false)
-    private LocationModel locationByLocationId;
-    @ManyToOne
-    @JoinColumn(name = "job_id", referencedColumnName = "id", nullable = false)
-    private JobModel jobByJobId;
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    private LocationModel locationId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "job_id", referencedColumnName = "id")
+    private JobModel jobId;
 
     public int getId() {
         return id;
@@ -122,18 +124,18 @@ public class PeoplesModel {
     }
 
     public LocationModel getLocationByLocationId() {
-        return locationByLocationId;
+        return locationId;
     }
 
     public void setLocationByLocationId(LocationModel locationByLocationId) {
-        this.locationByLocationId = locationByLocationId;
+        this.locationId = locationByLocationId;
     }
 
     public JobModel getJobByJobId() {
-        return jobByJobId;
+        return jobId;
     }
 
     public void setJobByJobId(JobModel jobByJobId) {
-        this.jobByJobId = jobByJobId;
+        this.jobId = jobByJobId;
     }
 }

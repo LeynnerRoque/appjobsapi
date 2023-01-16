@@ -13,6 +13,9 @@ public class EnterpriseDTO {
     @NotBlank
     private String phoneNumber;
 
+    public EnterpriseDTO(){
+
+    }
 
     public EnterpriseDTO(EnterpriseModel model){
         this.id = model.getId();

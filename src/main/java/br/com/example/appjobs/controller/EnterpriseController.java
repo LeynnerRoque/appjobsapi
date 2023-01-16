@@ -17,22 +17,19 @@ import java.util.List;
 public class EnterpriseController {
     final EnterpriseService service;
 
-    final EnterpriseMapper mapper;
-
-    public EnterpriseController(EnterpriseService service, EnterpriseMapper mapper) {
+    public EnterpriseController(EnterpriseService service) {
         this.service = service;
-        this.mapper = mapper;
     }
 
     @GetMapping("/api/all")
     public ResponseEntity<List<EnterpriseDTO>> getAllEnterprise(){
-        var dtos = mapper.toListDTO(service.findAll());
+        var dtos = service.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
     @GetMapping("/api/one/{id}")
     public ResponseEntity<EnterpriseDTO> getOneEnterprise(@PathVariable("id") Integer id){
-        var dtos = mapper.toDTO(service.findById(id));
+        var dtos = service.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 

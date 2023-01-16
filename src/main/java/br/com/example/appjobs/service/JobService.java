@@ -33,10 +33,10 @@ public class JobService {
     }
 
     public JobModel save(JobDTO dto) {
-        int id = (int) Math.random();
-        dto.setId(id);
-        var object = mapper.fromEntity(dto);
-        return repository.save(object);
+            int id = (int) Math.random();
+            dto.setId(id);
+            var object = mapper.fromEntity(dto);
+            return repository.save(object);
     }
 
     public List<JobDTO> listAll() {
