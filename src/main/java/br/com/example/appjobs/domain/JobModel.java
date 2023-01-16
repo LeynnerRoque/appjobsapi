@@ -2,6 +2,7 @@ package br.com.example.appjobs.domain;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 @Entity
@@ -21,12 +22,12 @@ public class JobModel {
     private String description;
     @Basic
     @Column(name = "salary", nullable = true, precision = 0)
-    private Double salary;
+    private BigDecimal salary;
 
 
     @Basic
     @Column(name = "enterprise_id", nullable = true, precision = 0)
-    private Integer enterprise;
+    private Long enterprise;
 
     public int getId() {
         return id;
@@ -52,19 +53,19 @@ public class JobModel {
         this.description = description;
     }
 
-    public Double getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 
-    public Integer getEnterprise() {
+    public Long getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(Integer enterprise) {
+    public void setEnterprise(Long enterprise) {
         this.enterprise = enterprise;
     }
 

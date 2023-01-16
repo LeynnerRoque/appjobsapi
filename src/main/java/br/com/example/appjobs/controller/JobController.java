@@ -27,12 +27,9 @@ public class JobController {
     }
 
     @PostMapping("/api/add")
-    public ResponseEntity<JobDTO> save(JobDTO dto){
+    public ResponseEntity<JobDTO> save(@RequestBody JobDTO dto){
         var a = service.save(dto);
-         if(a == null){
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST) .body(null);
-            }else{
-            return ResponseEntity.status(HttpStatus.OK).body(mapper.toDTO(a));
-        }
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.toDTO(service.save(dto)));
+
     }
 }

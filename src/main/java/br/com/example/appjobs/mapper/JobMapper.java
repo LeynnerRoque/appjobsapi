@@ -13,14 +13,22 @@ import java.util.stream.Collectors;
 public class JobMapper {
 
     public JobModel fromEntity(JobDTO dto){
-        var model = new JobModel();
-        BeanUtils.copyProperties(dto, model);
-        return model;
+        if(dto.getTitle() == null){
+            return null;
+        }else{
+            var model = new JobModel();
+           // BeanUtils.copyProperties(dto, model);
+            model.setId(dto.getId());
+            model.setTitle(dto.getTitle());
+            model.setDescription(dto.getDescription());
+            model.setSalary(dto.getSalary());
+            model.setEnterprise(dto.getEnterprise());
+            return model;
+        }
     }
 
     public JobDTO toDTO(JobModel model){
         var dto = new JobDTO(model);
-        //BeanUtils.copyProperties(model, dto);
         return dto;
     }
 

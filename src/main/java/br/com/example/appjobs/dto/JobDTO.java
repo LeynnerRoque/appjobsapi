@@ -3,6 +3,8 @@ package br.com.example.appjobs.dto;
 import br.com.example.appjobs.domain.EnterpriseModel;
 import br.com.example.appjobs.domain.JobModel;
 
+import java.math.BigDecimal;
+
 public class JobDTO {
 
 
@@ -20,9 +22,9 @@ public class JobDTO {
     private int id;
     private String title;
     private String description;
-    private Double salary;
+    private BigDecimal salary;
 
-    private Integer enterprise;
+    private Long enterprise;
 
     public int getId() {
         return id;
@@ -48,19 +50,19 @@ public class JobDTO {
         this.description = description;
     }
 
-    public Double getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 
-    public Integer getEnterprise() {
+    public Long getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(Integer enterprise) {
+    public void setEnterprise(Long enterprise) {
         this.enterprise = enterprise;
     }
 }
