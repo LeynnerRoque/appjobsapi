@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "job", schema = "appjobs", catalog = "")
@@ -24,10 +25,11 @@ public class JobModel {
     @Column(name = "salary", nullable = true, precision = 0)
     private BigDecimal salary;
 
-
-    @Basic
-    @Column(name = "enterprise_id", nullable = true, precision = 0)
-    private Long enterprise;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobId")
+    private List<PeoplesModel> peoplesList;
+    @JoinColumn(name = "enterprise_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private EnterpriseModel enterpriseId;
 
     public int getId() {
         return id;
@@ -61,12 +63,12 @@ public class JobModel {
         this.salary = salary;
     }
 
-    public Long getEnterprise() {
-        return enterprise;
+    public EnterpriseModel getEnterprise() {
+        return enterpriseId;
     }
 
-    public void setEnterprise(Long enterprise) {
-        this.enterprise = enterprise;
+    public void setEnterprise(EnterpriseModel enterprise) {
+        this.enterpriseId = enterprise;
     }
 
     @Override

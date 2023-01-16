@@ -30,15 +30,12 @@ public class PeoplesModel {
     @Column(name = "phone", nullable = true, length = 11)
     private String phone;
 
-
-    @Basic
-    @Column(name = "location_id", nullable = true, length = 11)
-    private Integer location;
-
-
-    @Basic
-    @Column(name = "job_id", nullable = true, length = 11)
-    private Integer job;
+    @JoinColumn(name = "job_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private JobModel jobId;
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private LocationModel locationId;
 
     public int getId() {
         return id;
@@ -96,20 +93,20 @@ public class PeoplesModel {
         this.phone = phone;
     }
 
-    public Integer getLocation() {
-        return location;
+    public LocationModel getLocation() {
+        return locationId;
     }
 
-    public void setLocation(Integer location) {
-        this.location = location;
+    public void setLocation(LocationModel locationId) {
+        this.locationId = locationId;
     }
 
-    public Integer getJob() {
-        return job;
+    public JobModel getJob() {
+        return jobId;
     }
 
-    public void setJob(Integer job) {
-        this.job = job;
+    public void setJob(JobModel jobId) {
+        this.jobId = jobId;
     }
 
     @Override

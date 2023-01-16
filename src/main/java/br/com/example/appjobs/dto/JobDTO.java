@@ -24,7 +24,7 @@ public class JobDTO {
     private String description;
     private BigDecimal salary;
 
-    private Long enterprise;
+    private EnterpriseModel enterprise;
 
     public int getId() {
         return id;
@@ -58,11 +58,11 @@ public class JobDTO {
         this.salary = salary;
     }
 
-    public Long getEnterprise() {
+    public EnterpriseModel getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(Long enterprise) {
+    public void setEnterprise(EnterpriseModel enterprise) {
         this.enterprise = enterprise;
     }
 }

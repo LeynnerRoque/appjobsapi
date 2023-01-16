@@ -3,6 +3,7 @@ package br.com.example.appjobs.dto;
 import br.com.example.appjobs.domain.JobModel;
 import br.com.example.appjobs.domain.LocationModel;
 import br.com.example.appjobs.domain.PeoplesModel;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 
 public class PeopleDTO {
 
@@ -29,9 +30,9 @@ public class PeopleDTO {
 
     private String phone;
 
-    private Integer job;
+    private JobModel job;
 
-    private Integer location;
+    private LocationModel location;
 
 
     public int getId() {
@@ -90,19 +91,19 @@ public class PeopleDTO {
         this.phone = phone;
     }
 
-    public Integer getJob() {
+    public JobModel getJob() {
         return job;
     }
 
-    public void setJob(Integer job) {
+    public void setJob(JobModel job) {
         this.job = job;
     }
 
-    public Integer getLocation() {
+    public LocationModel getLocation() {
         return location;
     }
 
-    public void setLocation(Integer location) {
+    public void setLocation(LocationModel location) {
         this.location = location;
     }
 }

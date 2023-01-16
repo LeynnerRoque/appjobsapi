@@ -3,6 +3,7 @@ package br.com.example.appjobs.domain;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "enterprise", schema = "appjobs", catalog = "")
@@ -21,6 +22,9 @@ public class EnterpriseModel {
     @Basic
     @Column(name = "phone_number", nullable = true, length = 11)
     private String phoneNumber;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enterpriseId")
+    private List<JobModel> jobList;
 
     public int getId() {
         return id;
@@ -52,6 +56,15 @@ public class EnterpriseModel {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+
+    public List<JobModel> getJobList() {
+        return jobList;
+    }
+
+    public void setJobList(List<JobModel> jobList) {
+        this.jobList = jobList;
     }
 
     @Override

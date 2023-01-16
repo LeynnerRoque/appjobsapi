@@ -3,6 +3,7 @@ package br.com.example.appjobs.domain;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "location", schema = "appjobs", catalog = "")
@@ -25,6 +26,9 @@ public class LocationModel {
     @Basic
     @Column(name = "state_province", nullable = true, length = 100)
     private String stateProvince;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "locationId")
+    private List<PeoplesModel> peoplesList;
 
     public int getId() {
         return id;

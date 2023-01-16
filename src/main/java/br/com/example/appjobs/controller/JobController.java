@@ -29,7 +29,7 @@ public class JobController {
     @PostMapping("/api/add")
     public ResponseEntity<JobDTO> save(@RequestBody JobDTO dto){
         var a = service.save(dto);
-            return ResponseEntity.status(HttpStatus.OK).body(mapper.toDTO(service.save(dto)));
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.toDTO(a));
 
     }
 }
