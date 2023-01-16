@@ -29,12 +29,16 @@ public class PeoplesModel {
     @Basic
     @Column(name = "phone", nullable = true, length = 11)
     private String phone;
-    @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "id")
-    private LocationModel locationId;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "job_id", referencedColumnName = "id")
-    private JobModel jobId;
+
+
+    @Basic
+    @Column(name = "location_id", nullable = true, length = 11)
+    private Integer location;
+
+
+    @Basic
+    @Column(name = "job_id", nullable = true, length = 11)
+    private Integer job;
 
     public int getId() {
         return id;
@@ -92,6 +96,21 @@ public class PeoplesModel {
         this.phone = phone;
     }
 
+    public Integer getLocation() {
+        return location;
+    }
+
+    public void setLocation(Integer location) {
+        this.location = location;
+    }
+
+    public Integer getJob() {
+        return job;
+    }
+
+    public void setJob(Integer job) {
+        this.job = job;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -121,21 +140,5 @@ public class PeoplesModel {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
-    }
-
-    public LocationModel getLocationByLocationId() {
-        return locationId;
-    }
-
-    public void setLocationByLocationId(LocationModel locationByLocationId) {
-        this.locationId = locationByLocationId;
-    }
-
-    public JobModel getJobByJobId() {
-        return jobId;
-    }
-
-    public void setJobByJobId(JobModel jobByJobId) {
-        this.jobId = jobByJobId;
     }
 }

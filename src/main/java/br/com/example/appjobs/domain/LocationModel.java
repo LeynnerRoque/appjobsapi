@@ -25,8 +25,6 @@ public class LocationModel {
     @Basic
     @Column(name = "state_province", nullable = true, length = 100)
     private String stateProvince;
-    @OneToMany(mappedBy = "locationId")
-    private Collection<PeoplesModel> peoples;
 
     public int getId() {
         return id;
@@ -96,11 +94,4 @@ public class LocationModel {
         return result;
     }
 
-    public Collection<PeoplesModel> getPeoplesById() {
-        return peoples;
-    }
-
-    public void setPeoplesById(Collection<PeoplesModel> peoplesById) {
-        this.peoples = peoplesById;
-    }
 }

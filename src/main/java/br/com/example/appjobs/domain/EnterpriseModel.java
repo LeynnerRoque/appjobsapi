@@ -21,8 +21,6 @@ public class EnterpriseModel {
     @Basic
     @Column(name = "phone_number", nullable = true, length = 11)
     private String phoneNumber;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enterpriseId")
-    private Collection<JobModel> jobsById;
 
     public int getId() {
         return id;
@@ -81,11 +79,4 @@ public class EnterpriseModel {
         return result;
     }
 
-    public Collection<JobModel> getJobsById() {
-        return jobsById;
-    }
-
-    public void setJobsById(Collection<JobModel> jobsById) {
-        this.jobsById = jobsById;
-    }
 }

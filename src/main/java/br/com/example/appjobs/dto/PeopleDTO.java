@@ -16,8 +16,8 @@ public class PeopleDTO {
         this.age = model.getAge();
         this.phone = model.getPhone();
         this.regionName = model.getRegionName();
-        this.location = model.getLocationByLocationId();
-        this.job = model.getJobByJobId();
+        this.location = model.getLocation();
+        this.job = model.getJob();
     }
 
     private int id;
@@ -29,9 +29,9 @@ public class PeopleDTO {
 
     private String phone;
 
-    private JobModel job;
+    private Integer job;
 
-    private LocationModel location;
+    private Integer location;
 
 
     public int getId() {
@@ -90,19 +90,19 @@ public class PeopleDTO {
         this.phone = phone;
     }
 
-    public JobModel getJob() {
+    public Integer getJob() {
         return job;
     }
 
-    public void setJob(JobModel job) {
+    public void setJob(Integer job) {
         this.job = job;
     }
 
-    public LocationModel getLocation() {
+    public Integer getLocation() {
         return location;
     }
 
-    public void setLocation(LocationModel location) {
+    public void setLocation(Integer location) {
         this.location = location;
     }
 }

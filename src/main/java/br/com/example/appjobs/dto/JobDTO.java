@@ -14,7 +14,7 @@ public class JobDTO {
         this.title = model.getTitle();
         this.description = model.getDescription();
         this.salary = model.getSalary();
-        this.enterprise = new EnterpriseDTO(model.getEnterprise());
+        this.enterprise = model.getEnterprise();
     }
 
     private int id;
@@ -22,7 +22,7 @@ public class JobDTO {
     private String description;
     private Double salary;
 
-    private EnterpriseDTO enterprise;
+    private Integer enterprise;
 
     public int getId() {
         return id;
@@ -56,11 +56,11 @@ public class JobDTO {
         this.salary = salary;
     }
 
-    public EnterpriseDTO getEnterprise() {
+    public Integer getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(EnterpriseDTO enterprise) {
+    public void setEnterprise(Integer enterprise) {
         this.enterprise = enterprise;
     }
 }

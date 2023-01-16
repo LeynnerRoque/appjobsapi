@@ -23,11 +23,10 @@ public class JobModel {
     @Column(name = "salary", nullable = true, precision = 0)
     private Double salary;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "enterprise_id", referencedColumnName = "id")
-    private EnterpriseModel enterpriseId;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "jobId")
-    private Collection<PeoplesModel> peoples;
+
+    @Basic
+    @Column(name = "enterprise_id", nullable = true, precision = 0)
+    private Integer enterprise;
 
     public int getId() {
         return id;
@@ -61,6 +60,13 @@ public class JobModel {
         this.salary = salary;
     }
 
+    public Integer getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Integer enterprise) {
+        this.enterprise = enterprise;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -85,21 +91,5 @@ public class JobModel {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (salary != null ? salary.hashCode() : 0);
         return result;
-    }
-
-    public EnterpriseModel getEnterprise() {
-        return enterpriseId;
-    }
-
-    public void setEnterprise(EnterpriseModel enterpriseByEnterpriseId) {
-        this.enterpriseId = enterpriseByEnterpriseId;
-    }
-
-    public Collection<PeoplesModel> getPeoplesById() {
-        return peoples;
-    }
-
-    public void setPeoplesById(Collection<PeoplesModel> peoplesById) {
-        this.peoples = peoplesById;
     }
 }
