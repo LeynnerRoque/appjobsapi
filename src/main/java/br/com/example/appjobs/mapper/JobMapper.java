@@ -17,12 +17,7 @@ public class JobMapper {
             return null;
         }else{
             var model = new JobModel();
-           // BeanUtils.copyProperties(dto, model);
-            model.setId(dto.getId());
-            model.setTitle(dto.getTitle());
-            model.setDescription(dto.getDescription());
-            model.setSalary(dto.getSalary());
-            model.setEnterprise(dto.getEnterprise());
+            BeanUtils.copyProperties(dto, model);
             return model;
         }
     }
