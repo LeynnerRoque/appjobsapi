@@ -41,4 +41,9 @@ public class JobService {
         var lista = mapper.toListDTO(repository.findAll());
         return lista;
     }
+
+    public JobModel findById(Integer id){
+        Long valor = id.longValue();
+        return repository.findById(valor).get();
+    }
 }

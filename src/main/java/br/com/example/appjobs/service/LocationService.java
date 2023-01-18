@@ -32,4 +32,8 @@ public class LocationService {
         var lista = repository.findAll();
         return mapper.toListDTO(lista);
     }
+
+    public LocationModel findById(Integer id){
+        return repository.findById(id);
+    }
 }
