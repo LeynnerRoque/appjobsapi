@@ -23,13 +23,28 @@ public class JobController {
 
     @GetMapping("/api/all")
     public ResponseEntity<List<JobDTO>> listAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(service.listAll());
+        try{
+           return ResponseEntity.status(HttpStatus.OK).body(service.listAll());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     @PostMapping("/api/add")
     public ResponseEntity<JobDTO> save(@RequestBody JobDTO dto){
         var a = service.save(dto);
             return ResponseEntity.status(HttpStatus.OK).body(mapper.toDTO(a));
+    }
 
+    @GetMapping("{id}")
+    public ResponseEntity<JobDTO> findById(@PathVariable("id") Integer id){
+        var response = service.findById(id);
+        if(response == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }else{
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
     }
 }

@@ -45,4 +45,8 @@ public class PeopleService {
     public List<PeopleDTO> listAll() {
         return mapper.toListDTO(repository.findAll());
     }
+
+    public PeopleDTO findById(Integer id){
+        return mapper.toDTO(repository.findById(id));
+    }
 }

@@ -33,7 +33,5 @@ public class LocationService {
         return mapper.toListDTO(lista);
     }
 
-    public LocationModel findById(Integer id){
-        return repository.findById(id);
-    }
+    public LocationDTO findById(Integer id){return  mapper.toDTO(repository.findById(id));}
 }

@@ -32,4 +32,14 @@ public class PeopleController {
         var object = service.save(dto);
         return ResponseEntity.status(HttpStatus.OK).body(mapper.toDTO(object));
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<PeopleDTO> findById(@PathVariable("id") Integer id){
+        var response = service.findById(id);
+        if(response == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }else{
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+    }
 }

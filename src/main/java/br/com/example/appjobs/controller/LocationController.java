@@ -36,7 +36,17 @@ public class LocationController {
         }else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        //return ResponseEntity.status(HttpStatus.OK).body(service.save(dto));
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<LocationDTO> findById(@PathVariable("id") Integer id){
+        var response = service.findById(id);
+         if(response == null){
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+         }
+         else{
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
     }
 
 }

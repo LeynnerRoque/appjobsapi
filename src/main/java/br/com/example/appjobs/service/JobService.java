@@ -34,6 +34,10 @@ public class JobService {
 
     public JobModel save(JobDTO dto) {
         var object = mapper.fromEntity(dto);
+        var enterprise = enterpriseRepository.findById(dto.getEnterprise());
+        if(enterprise != null){
+            object.setEnterprise(enterprise);
+        }
         return repository.save(object);
     }
 
@@ -42,8 +46,8 @@ public class JobService {
         return lista;
     }
 
-    public JobModel findById(Integer id){
+    public JobDTO findById(Integer id){
         Long valor = id.longValue();
-        return repository.findById(valor).get();
+        return mapper.toDTO(repository.findById(valor).get());
     }
 }

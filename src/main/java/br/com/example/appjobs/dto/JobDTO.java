@@ -16,7 +16,7 @@ public class JobDTO {
         this.title = model.getTitle();
         this.description = model.getDescription();
         this.salary = model.getSalary();
-        this.enterprise = model.getEnterprise();
+        this.enterprise = model.getEnterprise().getId();
     }
 
     private int id;
@@ -24,7 +24,7 @@ public class JobDTO {
     private String description;
     private BigDecimal salary;
 
-    private EnterpriseModel enterprise;
+    private Integer enterprise;
 
     public int getId() {
         return id;
@@ -58,11 +58,11 @@ public class JobDTO {
         this.salary = salary;
     }
 
-    public EnterpriseModel getEnterprise() {
+    public Integer getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(EnterpriseModel enterprise) {
+    public void setEnterprise(Integer enterprise) {
         this.enterprise = enterprise;
     }
 }
