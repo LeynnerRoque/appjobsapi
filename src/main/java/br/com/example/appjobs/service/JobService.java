@@ -50,4 +50,18 @@ public class JobService {
         Long valor = id.longValue();
         return mapper.toDTO(repository.findById(valor).get());
     }
+
+    public JobDTO update(JobDTO dto){
+        if(dto.getId() < 0){
+            return null;
+        }else{
+            var object = mapper.fromEntity(dto);
+            var enterprise = enterpriseRepository.findById(dto.getEnterprise());
+            if(enterprise != null){
+                object.setEnterprise(enterprise);
+            }
+            return mapper.toDTO(save(dto));
+        }
+
+    }
 }

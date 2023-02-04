@@ -42,4 +42,10 @@ public class PeopleController {
             return ResponseEntity.status(HttpStatus.OK).body(response);
         }
     }
+
+    @PutMapping("/api/up")
+    public ResponseEntity<PeopleDTO> uodate(@RequestBody PeopleDTO dto){
+        var object = service.update(dto);
+        return ResponseEntity.status(HttpStatus.OK).body(object);
+    }
 }

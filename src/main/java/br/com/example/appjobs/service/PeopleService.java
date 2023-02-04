@@ -49,4 +49,12 @@ public class PeopleService {
     public PeopleDTO findById(Integer id){
         return mapper.toDTO(repository.findById(id));
     }
+
+    public PeopleDTO update(PeopleDTO dto){
+        if(dto.getId() < 0){
+            return null;
+        }else{
+            return mapper.toDTO(save(dto));
+        }
+    }
 }

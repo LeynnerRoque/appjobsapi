@@ -47,4 +47,10 @@ public class JobController {
             return ResponseEntity.status(HttpStatus.OK).body(response);
         }
     }
+
+    @PutMapping("/api/up")
+    public ResponseEntity<JobDTO> update(@RequestBody JobDTO dto){
+        var a = service.update(dto);
+        return ResponseEntity.status(HttpStatus.OK).body(a);
+    }
 }

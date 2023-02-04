@@ -39,5 +39,14 @@ public class EnterpriseService {
         return mapper.toDTO(repository.findById(id));
     }
 
+    public EnterpriseDTO update(EnterpriseDTO dto){
+        if(dto.getId() < 0){
+            return null;
+        }else{
+            var object = mapper.fromEntity(dto);
+            return mapper.toDTO(repository.save(object));
+        }
+    }
+
 
 }

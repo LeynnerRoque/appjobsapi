@@ -38,5 +38,9 @@ public class EnterpriseController {
         return ResponseEntity.status(HttpStatus.OK).body(service.save(a));
     }
 
+    @PutMapping("/api/up")
+    public ResponseEntity<EnterpriseDTO> update(@RequestBody EnterpriseDTO a){
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(a));
+    }
 
 }
