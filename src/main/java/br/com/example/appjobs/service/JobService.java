@@ -1,13 +1,11 @@
 package br.com.example.appjobs.service;
 
-import br.com.example.appjobs.domain.EnterpriseModel;
 import br.com.example.appjobs.domain.JobModel;
 import br.com.example.appjobs.dto.JobDTO;
 import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.mapper.JobMapper;
 import br.com.example.appjobs.repository.EnterpriseRepository;
 import br.com.example.appjobs.repository.JobRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,5 +61,14 @@ public class JobService {
             return mapper.toDTO(save(dto));
         }
 
+    }
+
+    public List<JobDTO> findbyEnterpriseId(Integer id){
+        List<JobDTO> dtos = mapper.toListDTO(repository.findJobsByIdEnterprise(id));
+        return dtos;
+    }
+
+    public JobDTO findByTitle(String title){
+        return mapper.toDTO(repository.findJobModelsByTitle(title));
     }
 }
