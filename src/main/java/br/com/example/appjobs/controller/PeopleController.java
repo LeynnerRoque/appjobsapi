@@ -24,13 +24,39 @@ public class PeopleController {
 
     @GetMapping("/api/all")
     public ResponseEntity<List<PeopleDTO>> listAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(service.listAll());
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.listAll());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    @GetMapping("/api/findByJob/{id}")
+    public ResponseEntity<List<PeopleDTO>> findPeoplesByJobId(@PathVariable("id") Integer id){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.findPeoplesByJobId(id));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    @GetMapping("/api/findByLocal/{id}")
+    public ResponseEntity<List<PeopleDTO>> findPeoplesByLocal(@PathVariable("id") Integer id){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.findPeoplesByLocationId(id));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
     @PostMapping("/api/add")
     public ResponseEntity<PeopleDTO> save(@RequestBody PeopleDTO dto){
-        var object = service.save(dto);
-        return ResponseEntity.status(HttpStatus.OK).body(mapper.toDTO(object));
+        try {
+            var object = service.save(dto);
+            return ResponseEntity.status(HttpStatus.OK).body(mapper.toDTO(object));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
     @GetMapping("{id}")
@@ -45,7 +71,11 @@ public class PeopleController {
 
     @PutMapping("/api/up")
     public ResponseEntity<PeopleDTO> uodate(@RequestBody PeopleDTO dto){
-        var object = service.update(dto);
-        return ResponseEntity.status(HttpStatus.OK).body(object);
+        try{
+            var object = service.update(dto);
+            return ResponseEntity.status(HttpStatus.OK).body(object);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 }

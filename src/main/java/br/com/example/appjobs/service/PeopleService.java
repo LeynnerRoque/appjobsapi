@@ -57,4 +57,14 @@ public class PeopleService {
             return mapper.toDTO(save(dto));
         }
     }
+
+    public List<PeopleDTO> findPeoplesByJobId(Integer id){
+        List<PeopleDTO> dtos = mapper.toListDTO(repository.findPeoplesByJobID(id));
+        return dtos;
+    }
+
+    public List<PeopleDTO> findPeoplesByLocationId(Integer id){
+        List<PeopleDTO> dtos = mapper.toListDTO(repository.findPeoplesByLocationId(id));
+        return dtos;
+    }
 }
