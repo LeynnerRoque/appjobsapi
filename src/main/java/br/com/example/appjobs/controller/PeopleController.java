@@ -3,6 +3,9 @@ package br.com.example.appjobs.controller;
 import br.com.example.appjobs.dto.PeopleDTO;
 import br.com.example.appjobs.mapper.PeopleMapper;
 import br.com.example.appjobs.service.PeopleService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,5 +80,10 @@ public class PeopleController {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+    }
+
+    @GetMapping("/pages")
+    public ResponseEntity<Page<PeopleDTO>> pages(@PageableDefault(page = 0,size = 2, sort = "name")Pageable pageable){
+        return ResponseEntity.ok(service.pages(pageable));
     }
 }

@@ -104,7 +104,7 @@ public class JobController {
     }
 
     @GetMapping("/pages")
-    public ResponseEntity<Page<JobDTO>  > pages(@PageableDefault(page = 0, size = 2, sort = "title") Pageable pageable){
+    public ResponseEntity<Page<JobDTO>> pages(@PageableDefault Pageable pageable){
         return ResponseEntity.ok(service.pages(pageable));
     }
 }

@@ -38,7 +38,4 @@ public class EnterpriseMapper {
         List<EnterpriseDTO> pages = toListDTO(pageModelList.toList());
         return new PageImpl<EnterpriseDTO>(pages);
     }
-
-
-
 }

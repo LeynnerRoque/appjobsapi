@@ -1,6 +1,7 @@
 package br.com.example.appjobs.repository;
 
 import br.com.example.appjobs.domain.JobModel;
+import br.com.example.appjobs.domain.PeoplesModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

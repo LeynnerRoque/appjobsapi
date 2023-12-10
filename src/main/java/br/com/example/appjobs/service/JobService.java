@@ -2,6 +2,7 @@ package br.com.example.appjobs.service;
 
 import br.com.example.appjobs.domain.JobModel;
 import br.com.example.appjobs.dto.JobDTO;
+import br.com.example.appjobs.dto.PeopleDTO;
 import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.mapper.JobMapper;
 import br.com.example.appjobs.repository.EnterpriseRepository;
