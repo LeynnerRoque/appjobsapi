@@ -2,9 +2,7 @@ package br.com.example.appjobs.controller;
 
 import br.com.example.appjobs.domain.EnterpriseModel;
 import br.com.example.appjobs.dto.EnterpriseDTO;
-import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.service.EnterpriseService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -54,7 +52,12 @@ public class EnterpriseController {
 
     @GetMapping("/allpages")
     public ResponseEntity<Page<EnterpriseDTO>> pages(@PageableDefault(page = 0, size = 2, sort = "foundationName") Pageable pageable){
-        return ResponseEntity.ok(service.lisPages(pageable));
+        return ResponseEntity.ok(service.listPages(pageable));
+    }
+
+    @GetMapping("/filterName/{name}")
+    public ResponseEntity<EnterpriseDTO> filterByName(@PathVariable("name") String name){
+        return ResponseEntity.ok(service.filterByName(name));
     }
 
 }

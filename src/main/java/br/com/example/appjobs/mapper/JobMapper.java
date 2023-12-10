@@ -3,6 +3,8 @@ package br.com.example.appjobs.mapper;
 import br.com.example.appjobs.domain.JobModel;
 import br.com.example.appjobs.dto.JobDTO;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,5 +34,10 @@ public class JobMapper {
                 .filter(Objects::nonNull)
                 .map(this::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public Page<JobDTO> toPageDTO(Page<JobModel> jobs){
+        List<JobDTO> pages = toListDTO(jobs.toList());
+        return new PageImpl<JobDTO>(pages);
     }
 }

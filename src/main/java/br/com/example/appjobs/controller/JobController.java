@@ -3,6 +3,9 @@ package br.com.example.appjobs.controller;
 import br.com.example.appjobs.dto.JobDTO;
 import br.com.example.appjobs.mapper.JobMapper;
 import br.com.example.appjobs.service.JobService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -98,5 +101,10 @@ public class JobController {
             log.error("Algo deu errado na requisicao: "+e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+    }
+
+    @GetMapping("/pages")
+    public ResponseEntity<Page<JobDTO>  > pages(@PageableDefault(page = 0, size = 2, sort = "title") Pageable pageable){
+        return ResponseEntity.ok(service.pages(pageable));
     }
 }

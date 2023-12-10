@@ -60,10 +60,13 @@ public class EnterpriseService {
         }
     }
 
-    public Page<EnterpriseDTO> lisPages(Pageable pageable){
+    public Page<EnterpriseDTO> listPages(Pageable pageable){
         Page<EnterpriseDTO> pageDTO = mapper.toPageDTO(repository.findAll(pageable));
         return pageDTO;
     }
 
+    public EnterpriseDTO filterByName(String name){
+        return mapper.toDTO(repository.findEnterpriseModelByFoundationName(name));
+    }
 
 }

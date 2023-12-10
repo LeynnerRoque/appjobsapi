@@ -11,4 +11,6 @@ public interface EnterpriseRepository extends JpaRepository<EnterpriseModel, Lon
 
     EnterpriseModel findById(Integer id);
 
+    EnterpriseModel findEnterpriseModelByFoundationName(String foundationName);
+
 }

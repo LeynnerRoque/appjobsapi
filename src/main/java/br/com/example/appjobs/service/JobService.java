@@ -6,6 +6,8 @@ import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.mapper.JobMapper;
 import br.com.example.appjobs.repository.EnterpriseRepository;
 import br.com.example.appjobs.repository.JobRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -70,5 +72,9 @@ public class JobService {
 
     public JobDTO findByTitle(String title){
         return mapper.toDTO(repository.findJobModelsByTitle(title));
+    }
+
+    public Page<JobDTO> pages(Pageable pageable){
+        return mapper.toPageDTO(repository.findAll(pageable));
     }
 }

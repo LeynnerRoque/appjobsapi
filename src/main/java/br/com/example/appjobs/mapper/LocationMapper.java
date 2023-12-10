@@ -3,6 +3,8 @@ package br.com.example.appjobs.mapper;
 import br.com.example.appjobs.domain.LocationModel;
 import br.com.example.appjobs.dto.LocationDTO;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,5 +31,10 @@ public class LocationMapper {
                 .filter(Objects::nonNull)
                 .map(this::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public Page<LocationDTO> toPageDTO(Page<LocationModel> pagesList){
+        List<LocationDTO> pages = toListDTO(pagesList.toList());
+        return new PageImpl<>(pages);
     }
 }
