@@ -5,6 +5,9 @@ import br.com.example.appjobs.dto.EnterpriseDTO;
 import br.com.example.appjobs.mapper.EnterpriseMapper;
 import br.com.example.appjobs.service.EnterpriseService;
 import jakarta.websocket.server.PathParam;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +44,17 @@ public class EnterpriseController {
     @PutMapping("/api/up")
     public ResponseEntity<EnterpriseDTO> update(@RequestBody EnterpriseDTO a){
         return ResponseEntity.status(HttpStatus.OK).body(service.update(a));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id){
+        service.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/allpages")
+    public ResponseEntity<Page<EnterpriseDTO>> pages(@PageableDefault(page = 0, size = 2, sort = "foundationName") Pageable pageable){
+        return ResponseEntity.ok(service.lisPages(pageable));
     }
 
 }
