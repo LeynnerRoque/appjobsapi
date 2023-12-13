@@ -107,4 +107,10 @@ public class JobController {
     public ResponseEntity<Page<JobDTO>> pages(@PageableDefault Pageable pageable){
         return ResponseEntity.ok(service.pages(pageable));
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id){
+        service.delete(id);
+        return ResponseEntity.ok("Remove");
+    }
 }

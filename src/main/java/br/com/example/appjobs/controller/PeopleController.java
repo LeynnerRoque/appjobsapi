@@ -86,4 +86,10 @@ public class PeopleController {
     public ResponseEntity<Page<PeopleDTO>> pages(@PageableDefault(page = 0,size = 2, sort = "name")Pageable pageable){
         return ResponseEntity.ok(service.pages(pageable));
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id){
+        service.delete(id);
+        return ResponseEntity.ok("Remove");
+    }
 }

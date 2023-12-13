@@ -10,6 +10,7 @@ import br.com.example.appjobs.repository.JobRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class JobService {
         this.enterpriseRepository = enterpriseRepository;
         this.enterpriseMapper = enterpriseMapper;
     }
-
+    @Transactional
     public JobModel save(JobDTO dto) {
         var object = mapper.fromEntity(dto);
         var enterprise = enterpriseRepository.findById(dto.getEnterprise());
@@ -52,6 +53,7 @@ public class JobService {
         return mapper.toDTO(repository.findById(valor).get());
     }
 
+    @Transactional
     public JobDTO update(JobDTO dto){
         if(dto.getId() < 0){
             return null;
@@ -77,5 +79,12 @@ public class JobService {
 
     public Page<JobDTO> pages(Pageable pageable){
         return mapper.toPageDTO(repository.findAll(pageable));
+    }
+
+    @Transactional
+    public void delete(Long id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+        }
     }
 }
