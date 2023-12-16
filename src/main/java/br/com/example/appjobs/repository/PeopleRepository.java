@@ -17,4 +17,7 @@ public interface PeopleRepository extends JpaRepository<PeoplesModel, Long> {
     List<PeoplesModel> findPeoplesByJobID(@Param("id") Integer id);
     @Query(value = "select * from peoples p where p.location_id = :id", nativeQuery = true)
     List<PeoplesModel> findPeoplesByLocationId(@Param("id") Integer id);
+
+    PeoplesModel findPeoplesModelByName(String name);
+
 }

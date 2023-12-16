@@ -1,5 +1,6 @@
 package br.com.example.appjobs.service;
 
+import br.com.example.appjobs.domain.JobModel;
 import br.com.example.appjobs.domain.PeoplesModel;
 import br.com.example.appjobs.dto.PeopleDTO;
 import br.com.example.appjobs.mapper.PeopleMapper;
@@ -81,5 +82,15 @@ public class PeopleService {
         if(repository.existsById(id)){
            repository.deleteById(id);
         }
+    }
+
+    public PeopleDTO filterByName(String name){
+        return mapper.toDTO(repository.findPeoplesModelByName(name));
+    }
+
+    public List<PeopleDTO> filterByJobTitle(String title){
+        var job = jobRepository.findJobModelsByTitle(title);
+        List<PeoplesModel> lista = repository.findPeoplesByJobID(job.getId());
+        return mapper.toListDTO(lista);
     }
 }

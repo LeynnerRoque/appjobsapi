@@ -92,4 +92,14 @@ public class PeopleController {
         service.delete(id);
         return ResponseEntity.ok("Remove");
     }
+
+    @GetMapping("/filterByName/{name}")
+    public ResponseEntity filterByName(@PathVariable("name") String name){
+        return ResponseEntity.ok(service.filterByName(name));
+    }
+
+    @GetMapping("/filterByJobTitle/{title}")
+    public ResponseEntity filterByJobTitle(@PathVariable("title") String title){
+        return ResponseEntity.ok(service.filterByJobTitle(title));
+    }
 }
