@@ -87,4 +87,10 @@ public class JobService {
             repository.deleteById(id);
         }
     }
+
+    public List<JobDTO> filterByEnterpriseName(String name){
+        var enterprise = enterpriseRepository.findEnterpriseModelByFoundationName(name);
+        List<JobModel> jobs = repository.findJobsByIdEnterprise(enterprise.getId());
+        return mapper.toListDTO(jobs);
+    }
 }

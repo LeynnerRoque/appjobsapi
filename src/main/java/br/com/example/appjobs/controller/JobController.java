@@ -113,4 +113,9 @@ public class JobController {
         service.delete(id);
         return ResponseEntity.ok("Remove");
     }
+
+    @GetMapping("/filterByNameFoundation/{name}")
+    public  ResponseEntity filterByName(@PathVariable("name") String name){
+        return ResponseEntity.ok(service.filterByEnterpriseName(name));
+    }
 }
